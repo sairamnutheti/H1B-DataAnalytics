@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Home</title>
+	<link rel="icon" href="images/favicon.ico">
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="/css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+	 <link rel="stylesheet" href="/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="/styles/kendo.uniform.min.css" />
+    <link rel="stylesheet" href="/styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="/styles/kendo.dataviz.uniform.min.css" />
+    <link rel="stylesheet" href="/styles/kendo.default.mobile.min.css" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- <a class="navbar-brand" href="home" style="color:white"><span style="font-size:16px;font-weight:bold;">H1B Data Analysis</span></a> -->
+                 <a class="navbar-brand" href="index" style=""><img src="images/H1B.jpg" style="height:40px;width:90px;margin-top:20px;"/></a>
+            </div>
+            
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+			
+                <ul class="nav navbar-nav side-nav" >
+					<li><h5 style="margin-top:15px;padding-left:20px;padding-bottom:10px;color:#fff;"><i class="fa fa-bars"></i> Navigation</h5></li>
+				
+						<li>
+                            <a href="/index"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+					    <li  >
+                            <a href="/yearlydata"><i class="fa fa-calendar fa-fw"></i> Yearly Data</a>							
+                        </li>
+						
+					   <li class="active">
+                            <a href="/location"><i class="fa fa-location-arrow"></i> Location Data</a>							
+                        </li>
+                        
+                         <li>
+    					 <a href="/predict" data-toggle="collapse" data-target="#demo"><i class="fa fa-line-chart"></i> Predictive Analysis </a>                           
+                        </li>   
+                        
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+			
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                     
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Year Wise Data
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+     
+
+
+               <!-- /.row -->
+           <!--  <div class="row" style="margin-top:10px;">
+               <div class="col-md-6" style="padding-bottom:50px;">
+                     		<input id="autocomplete" style="width:100%"/>
+                     		</div>
+                     		<div class="col-md-3" >
+                     			<input type="button" class="k-button" id="button" style="" value="Search"/>
+                     		</div>
+                     	</div> -->
+         	<div class="row"  style="margin-top:50px;">
+         		<div class="col-md-12" style="padding-bottom:200px;"> 
+     		
+     		  <div id="chart"  style="background: center no-repeat url('images/bg1.png');"></div>
+			  </div>
+			</div>
+			
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+   <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+
+	 <script src="/kendojs/kendo.all.min.js"></script>
+    <script src="/kendojs/kendo.timezones.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+
+  	  <!-- Metis Menu Plugin JavaScript -->
+    <script src="/js/metisMenu.min.js"></script>
+
+  
+
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/js/main.js"></script>
+    
+
+
+
+<script>
+
+           function createChart() {
+            $("#chart").kendoChart({
+            
+            	chartArea: {
+					        width: 600,
+					        height: 600
+					    },
+                title: {
+                    position: "bottom",
+                    text: "State Wise Share of H1B Requests in 2014" 
+                },
+                legend: {
+                    visible: false
+                },
+                chartArea: {
+                    background: ""
+                },
+                seriesDefaults: {
+                    labels: {
+                        visible: true,
+                        background: "transparent",
+                        template: "#= category #: \n #= value#"
+                    }
+                },
+                series: [{
+                    type: "pie",
+                    startAngle: 150,
+                    data:  [{
+                        category: "California",
+                        value: 98525,
+                        color: "#9de219"
+                    },{
+                        category: "Texas",
+                        value: 51851,
+                        color: "#90cc38"
+                    },{
+                        category: "New York",
+                        value: 48882,
+                        color: "#068c35"
+                    },{
+                        category: "New Jersey",
+                        value: 36783,
+                        color: "#006634"
+                    },{
+                        category: "Illinois",
+                        value: 27412,
+                        color: "#004d38"
+                    },{
+                        category: "Massachusetts",
+                        value: 19914,
+                        color: "#033939"
+                    }]
+                }],
+                tooltip: {
+                    visible: true,
+                    format: "{0}"
+                }
+            });
+        }
+
+        $(document).ready(createChart);
+        $(document).bind("kendo:skinChange", createChart);
+ 
+    </script>
+</body>
+
+</html>
